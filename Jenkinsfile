@@ -1,5 +1,5 @@
 node {
-    docker.image('node:16').withRun('-p 3000:3000' '--user root') { container ->
+    docker.image('node:16').withRun('-p 3000:3000 --user root') { container ->
         env.CI = 'true'
         try {
             stage('Checkout') {
