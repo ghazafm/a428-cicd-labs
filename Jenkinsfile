@@ -16,8 +16,8 @@ node {
 
             stage('Build') {
                 echo 'Starting Build stage...'
-                sh 'apt-get update && apt-get install -y nodejs npm'
-                sh 'npm install'
+                sh 'su -c "apt-get update && apt-get install -y nodejs npm"'
+                sh 'su -c "npm install"'
             }
 
             stage('Test') {
