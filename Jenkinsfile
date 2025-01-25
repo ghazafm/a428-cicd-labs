@@ -1,5 +1,5 @@
 node {
-    docker.image('node:16-buster-slim').withRun('-p 3000:3000').inside { container ->
+    docker.image('node:16-buster-slim').inside('-p 3000:3000') { container ->
         env.CI = 'true'
         try {
             stage('Build') {
