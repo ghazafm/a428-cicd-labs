@@ -8,7 +8,12 @@ node {
 
             stage('Build') {
                 echo 'Starting Build stage...'
-                sh 'npm install'
+                dir('react-app') { // Adjust if necessary
+                    sh 'ls -la' // Debugging step
+                    sh 'node -v' // Check Node version
+                    sh 'npm -v' // Check npm version
+                    sh 'npm install'
+                }
             }
 
             stage('Test') {
