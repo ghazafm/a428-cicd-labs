@@ -6,6 +6,14 @@ node {
                 checkout scm
             }
 
+            stage('Check Environment') {
+            echo 'Checking if node and npm are installed...'
+            sh 'which node || echo "Node not found"'
+            sh 'which npm || echo "NPM not found"'
+            sh 'node -v || echo "Node version not found"'
+            sh 'npm -v || echo "NPM version not found"'
+            }
+
             stage('Build') {
                 echo 'Starting Build stage...'
                 sh 'npm install'
