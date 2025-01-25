@@ -1,5 +1,5 @@
 node {
-    docker.image('node:16').withRun('-p 3000:3000') { container ->
+    docker.image('node:16').withRun('-p 3000:3000' '--user root') { container ->
         env.CI = 'true'
         try {
             stage('Checkout') {
@@ -16,8 +16,8 @@ node {
 
             stage('Build') {
                 echo 'Starting Build stage...'
-                sh 'su -c "apt-get update && apt-get install -y nodejs npm"'
-                sh 'su -c "npm install"'
+                sh 'apt-get update && apt-get install nodejs npm -y'
+                sh 'npm install'
             }
 
             stage('Test') {
