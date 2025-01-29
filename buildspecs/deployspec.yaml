@@ -1,0 +1,14 @@
+install:
+  runtime-versions:
+    nodejs: 16
+  commands:
+    - pyenv install -s 3.9.0
+    - pyenv global 3.9.0
+  build:
+    commands:
+      - sam build
+      - sam deploy --no-fail-on-empty-changeset
+      - cd front-end-react
+      - npm install
+      - npm run build
+      - aws s3 sync --acl public-read build s3://ghaza-trivia-app-bucket/
